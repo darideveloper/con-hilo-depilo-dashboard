@@ -1,8 +1,7 @@
 # admin-ui Specification
 
-## Purpose
-TBD - created by archiving change setup-initial-dashboard. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Modern Admin Interface
 The project SHALL use `django-unfold` to provide a modern, Tailwind-based administrative interface with dynamic branding.
 
@@ -17,20 +16,7 @@ The project SHALL use `django-unfold` to provide a modern, Tailwind-based admini
 - WHEN the admin dashboard renders
 - THEN the company logo and the company name MUST display side-by-side in the top-left header.
 
-### Requirement: Markdown Support in Admin
-Text areas in the admin interface SHALL support Markdown editing via SimpleMDE.
-
-#### Scenario: Edit Markdown Field
-- When editing a model with a text area in the admin.
-- Then the field is enhanced with a SimpleMDE editor.
-
-### Requirement: Environment Badges
-The admin interface SHALL display a badge indicating the current environment (Production, Development, etc.).
-
-#### Scenario: Display Environment Badge
-- Given `ENV=prod`.
-- When accessing the admin.
-- Then a "Production" badge is visible in the header.
+## ADDED Requirements
 
 ### Requirement: Template-based CSS Variable Injection
 The admin interface SHALL inject dynamic primary color shades into the document `:root` using a template override.
@@ -39,4 +25,3 @@ The admin interface SHALL inject dynamic primary color shades into the document 
 - GIVEN the `skeleton.html` override is active
 - WHEN the admin dashboard is loaded
 - THEN the `--brand-primary-500` CSS variable MUST match the `brand_color` in the `CompanyProfile`.
-

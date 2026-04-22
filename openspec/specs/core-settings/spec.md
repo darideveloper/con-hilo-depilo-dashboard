@@ -26,3 +26,11 @@ The project SHALL support switching between local file storage and AWS S3 based 
 - When the application handles file uploads.
 - Then files are uploaded to the configured S3 bucket.
 
+### Requirement: Branding Context Processor
+ the project SHALL include a context processor to provide derived brand colors to all templates.
+
+#### Scenario: Inject Brand Colors
+- GIVEN the `branding` context processor is registered
+- WHEN any template is rendered
+- THEN `brand_colors` (containing 400, 500, 600 shades) MUST be available in the context.
+

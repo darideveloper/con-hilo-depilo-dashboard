@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
 from solo.models import SingletonModel
 
@@ -56,7 +57,17 @@ class BaseDateOverride(models.Model):
 # --- Company Profile ---
 
 class CompanyProfile(SingletonModel):
-    brand_color = models.CharField(max_length=20, default="#682896")
+    name = models.CharField(max_length=100, default="Con Hilo Depilo")
+    brand_color = models.CharField(
+        max_length=50, 
+        default="oklch(0.68 0.28 296)",
+        validators=[
+            RegexValidator(
+                regex=r"^(#[0-9a-fA-F]{6}|oklch\([\d.]+%? [\d.]+ [\d.]+\))$",
+                message=_("Enter a valid HEX color or OKLCH format (e.g., oklch(0.68 0.28 296))")
+            )
+        ]
+    )
     logo = models.ImageField(upload_to="branding/", null=True, blank=True)
     contact_email = models.EmailField(null=True, blank=True)
     contact_phone = models.CharField(max_length=20, null=True, blank=True)

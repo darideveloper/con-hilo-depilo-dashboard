@@ -70,6 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "project.context_processors.branding",
             ],
         },
     },
@@ -230,12 +231,12 @@ EMAILS_NOTIFICATIONS = os.getenv("EMAILS_NOTIFICATIONS", "").split(",")
 
 # Unfold Settings
 UNFOLD = {
-    "SITE_TITLE": "Con Hilo Depilo",
-    "SITE_HEADER": "Con Hilo Depilo Admin",
+    "SITE_TITLE": "utils.callbacks.site_title_callback",
+    "SITE_HEADER": "utils.callbacks.site_header_callback",
     "SITE_SUBHEADER": "Dashboard",
     "SITE_URL": "/",
-    "SITE_ICON": lambda request: static("favicon.png"),
-    "SITE_LOGO": lambda request: static("logo.webp"),
+    "SITE_ICON": "utils.callbacks.site_icon_callback",
+    # "SITE_LOGO": "utils.callbacks.site_icon_callback",
     "SITE_SYMBOL": "directions_car",
     "SITE_FAVICONS": [
         {
@@ -251,17 +252,17 @@ UNFOLD = {
     "THEME": "light",
     "COLORS": {
         "primary": {
-            "50": "oklch(0.97 0.02 296)",
-            "100": "oklch(0.92 0.04 296)",
-            "200": "oklch(0.85 0.08 296)",
-            "300": "oklch(0.75 0.15 296)",
-            "400": "oklch(0.70 0.22 296)",
-            "500": "oklch(0.68 0.28 296)",
-            "600": "oklch(0.60 0.25 296)",
-            "700": "oklch(0.50 0.20 296)",
-            "800": "oklch(0.40 0.16 296)",
-            "900": "oklch(0.30 0.12 296)",
-            "950": "oklch(0.20 0.08 296)",
+            "50": "var(--brand-primary-50, oklch(0.97 0.02 296))",
+            "100": "var(--brand-primary-100, oklch(0.92 0.04 296))",
+            "200": "var(--brand-primary-200, oklch(0.85 0.08 296))",
+            "300": "var(--brand-primary-300, oklch(0.75 0.15 296))",
+            "400": "var(--brand-primary-400, oklch(0.70 0.22 296))",
+            "500": "var(--brand-primary-500, oklch(0.68 0.28 296))",
+            "600": "var(--brand-primary-600, oklch(0.60 0.25 296))",
+            "700": "var(--brand-primary-700, oklch(0.50 0.20 296))",
+            "800": "var(--brand-primary-800, oklch(0.40 0.16 296))",
+            "900": "var(--brand-primary-900, oklch(0.30 0.12 296))",
+            "950": "var(--brand-primary-950, oklch(0.20 0.08 296))",
         },
     },
     "SIDEBAR": {

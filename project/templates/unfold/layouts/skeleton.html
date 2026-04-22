@@ -1,0 +1,20 @@
+{% extends "unfold/layouts/skeleton.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style id="unfold-custom-brand-colors">
+        :root {
+            --brand-primary-50: {{ brand_colors.50 }};
+            --brand-primary-100: {{ brand_colors.100 }};
+            --brand-primary-200: {{ brand_colors.200 }};
+            --brand-primary-300: {{ brand_colors.300 }};
+            --brand-primary-400: {{ brand_colors.400 }};
+            --brand-primary-500: {{ brand_colors.500 }};
+            --brand-primary-600: {{ brand_colors.600 }};
+            --brand-primary-700: {{ brand_colors.700 }};
+            --brand-primary-800: {{ brand_colors.800 }};
+            --brand-primary-900: {{ brand_colors.900 }};
+            --brand-primary-950: {{ brand_colors.950 }};
+        }
+    </style>
+{% endblock %}
