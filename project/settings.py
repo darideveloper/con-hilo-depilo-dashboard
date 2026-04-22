@@ -128,9 +128,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "Europe/Madrid"
+TIME_ZONE = os.getenv("TIME_ZONE", "America/Mexico_City")
 USE_I18N = True
 USE_TZ = True
+
+# Core Identity
+COMPANY_NAME = os.getenv("COMPANY_NAME")
+SITE_URL = os.getenv("SITE_URL")
+
+# Integrations
+STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET")
+GOOGLE_CALENDAR_ID = os.getenv("GOOGLE_CALENDAR_ID")
 
 
 # Static & Media Management
