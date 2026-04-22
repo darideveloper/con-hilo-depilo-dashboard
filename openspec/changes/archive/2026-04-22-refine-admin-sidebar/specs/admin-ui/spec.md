@@ -1,8 +1,7 @@
-# admin-ui Specification
+# admin-ui Specification Delta
 
-## Purpose
-TBD - created by archiving change setup-initial-dashboard. Update Purpose after archive.
-## Requirements
+## MODIFIED Requirements
+
 ### Requirement: Modern Admin Interface
 The project SHALL use `django-unfold` to provide a modern, Tailwind-based administrative interface.
 
@@ -21,19 +20,3 @@ The project SHALL use `django-unfold` to provide a modern, Tailwind-based admini
 - Then they are redirected to the Booking changelist.
 - When they click "Perfil de Empresa" in the sidebar.
 - Then they are redirected to the Company Profile change form (Singleton).
-
-### Requirement: Markdown Support in Admin
-Text areas in the admin interface SHALL support Markdown editing via SimpleMDE.
-
-#### Scenario: Edit Markdown Field
-- When editing a model with a text area in the admin.
-- Then the field is enhanced with a SimpleMDE editor.
-
-### Requirement: Environment Badges
-The admin interface SHALL display a badge indicating the current environment (Production, Development, etc.).
-
-#### Scenario: Display Environment Badge
-- Given `ENV=prod`.
-- When accessing the admin.
-- Then a "Production" badge is visible in the header.
-
