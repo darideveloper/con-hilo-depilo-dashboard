@@ -36,7 +36,7 @@ The project SHALL include a context processor to provide derived brand colors to
 - AND the context processor function MUST NOT be named `branding` to avoid collisions.
 
 ### Requirement: Default Language Configuration
-The project's default language SHALL be configured to Spanish (`es`).
+The project's default language SHALL be configured to Spanish (`es`), and it SHALL support local translation overrides.
 
 #### Scenario: Spanish Language Setup
 - Given the Django application is running.
@@ -47,6 +47,13 @@ The project's default language SHALL be configured to Spanish (`es`).
 - Given `LANGUAGE_CODE=en-us` in the environment.
 - When the Django application starts.
 - Then the `LANGUAGE_CODE` setting MUST be `"en-us"`.
+
+#### Scenario: Local Translation Support
+- Given a `locale/` directory exists in the project root.
+- When the Django application starts.
+- Then the `LOCALE_PATHS` setting MUST include the path to this directory.
+- AND the `LANGUAGES` setting MUST be explicitly defined (e.g., including `es` and `en`).
+- AND strings defined in `locale/es/LC_MESSAGES/django.po` MUST take precedence over default translations.
 
 ### Requirement: Environment Variable Documentation
 All environment-specific configuration files (`.env*`) SHALL include the `LANGUAGE_CODE` variable to ensure visibility across different stages.

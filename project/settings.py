@@ -133,6 +133,15 @@ TIME_ZONE = os.getenv("TIME_ZONE", "America/Mexico_City")
 USE_I18N = True
 USE_TZ = True
 
+LANGUAGES = [
+    ("es", _("Spanish")),
+    ("en", _("English")),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
 # Core Identity
 COMPANY_NAME = os.getenv("COMPANY_NAME")
 SITE_URL = os.getenv("SITE_URL")
