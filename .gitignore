@@ -29,3 +29,6 @@ openspec/changes/*
 
 # skip docs
 docs/
+
+# skip playwright
+.playwright-cli

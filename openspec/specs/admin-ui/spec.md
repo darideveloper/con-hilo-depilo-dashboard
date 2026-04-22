@@ -4,18 +4,20 @@
 TBD - created by archiving change setup-initial-dashboard. Update Purpose after archive.
 ## Requirements
 ### Requirement: Modern Admin Interface
-The project SHALL use `django-unfold` to provide a modern, Tailwind-based administrative interface with dynamic branding.
+The project SHALL use `django-unfold` to provide a modern, Tailwind-based administrative interface with a functional sticky action bar.
 
-#### Scenario: Access Admin Dashboard
-- When a superuser logs into `/admin/`.
-- Then the interface uses the Unfold theme with dynamic primary colors.
-- And the site title and header MUST match the name configured in `CompanyProfile`.
-- And the sidebar logo MUST match the logo configured in `CompanyProfile`.
+#### Scenario: Sticky Bottom Bar Presence
+- Given the superuser is on a model change form (e.g., editing a Booking).
+- When the page content exceeds the viewport height.
+- Then the action bar (containing Save and Delete buttons) SHALL remain pinned to the bottom of the viewport.
+- And the layout SHALL use Unfold's standard container classes to ensure proper spacing.
 
-#### Scenario: Logo and Title Display
-- GIVEN `UNFOLD["SITE_LOGO"]` is omitted and `UNFOLD["SITE_ICON"]` is set
-- WHEN the admin dashboard renders
-- THEN the company logo and the company name MUST display side-by-side in the top-left header.
+#### Scenario: Standardized Admin UI Features
+- Given an admin class inheriting from `ModelAdminUnfoldBase`.
+- When accessing the change form.
+- Then "Warn Unsaved Changes" MUST be enabled.
+- And fields SHALL be displayed in their compressed format by default.
+- And a "Cancel" button SHALL be visible in the action bar.
 
 ### Requirement: Markdown Support in Admin
 Text areas in the admin interface SHALL support Markdown editing via SimpleMDE.
