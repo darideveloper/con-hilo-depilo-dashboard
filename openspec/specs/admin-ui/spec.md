@@ -6,18 +6,11 @@ TBD - created by archiving change setup-initial-dashboard. Update Purpose after 
 ### Requirement: Modern Admin Interface
 The project SHALL use `django-unfold` to provide a modern, Tailwind-based administrative interface with a functional sticky action bar.
 
-#### Scenario: Sticky Bottom Bar Presence
-- Given the superuser is on a model change form (e.g., editing a Booking).
-- When the page content exceeds the viewport height.
-- Then the action bar (containing Save and Delete buttons) SHALL remain pinned to the bottom of the viewport.
-- And the layout SHALL use Unfold's standard container classes to ensure proper spacing.
-
-#### Scenario: Standardized Admin UI Features
-- Given an admin class inheriting from `ModelAdminUnfoldBase`.
-- When accessing the change form.
-- Then "Warn Unsaved Changes" MUST be enabled.
-- And fields SHALL be displayed in their compressed format by default.
-- And a "Cancel" button SHALL be visible in the action bar.
+#### Scenario: Branding Visibility on Subpages
+- GIVEN the superuser is on a model list view (e.g., Bookings) or a change form.
+- WHEN the page is rendered.
+- THEN the sidebar MUST display the brand logo and site name.
+- AND the `branding` template block MUST be explicitly defined in `base_site.html`.
 
 ### Requirement: Markdown Support in Admin
 Text areas in the admin interface SHALL support Markdown editing via SimpleMDE.
@@ -37,10 +30,11 @@ The admin interface SHALL display a badge indicating the current environment (Pr
 ### Requirement: Template-based CSS Variable Injection
 The admin interface SHALL inject dynamic primary color shades into the document `:root` using a template override.
 
-#### Scenario: Apply Dynamic Colors
-- GIVEN the `skeleton.html` override is active
-- WHEN the admin dashboard is loaded
-- THEN the `--brand-primary-500` CSS variable MUST match the `brand_color` in the `CompanyProfile`.
+#### Scenario: Apply Dynamic Colors without Recursion
+- GIVEN the `skeleton.html` override is active.
+- WHEN the admin dashboard is loaded.
+- THEN the template MUST NOT cause a recursion error during extension.
+- AND the `--brand-primary-500` CSS variable MUST match the value provided by the `brand_theme_context`.
 
 ### Requirement: Admin Color Picker
 The `brand_color` field in the `CompanyProfile` admin interface MUST be rendered using a visual color picker.

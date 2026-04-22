@@ -27,12 +27,13 @@ The project SHALL support switching between local file storage and AWS S3 based 
 - Then files are uploaded to the configured S3 bucket.
 
 ### Requirement: Branding Context Processor
- the project SHALL include a context processor to provide derived brand colors to all templates.
+The project SHALL include a context processor to provide derived brand colors to all templates without colliding with system variables.
 
-#### Scenario: Inject Brand Colors
-- GIVEN the `branding` context processor is registered
-- WHEN any template is rendered
-- THEN `brand_colors` (containing 400, 500, 600 shades) MUST be available in the context.
+#### Scenario: Inject Brand Colors via Unique Variable
+- GIVEN the `brand_theme_context` context processor is registered.
+- WHEN any template is rendered.
+- THEN the context variable `brand_colors` (containing 400, 500, 600 shades) MUST be available.
+- AND the context processor function MUST NOT be named `branding` to avoid collisions.
 
 ### Requirement: Default Language Configuration
 The project's default language SHALL be configured to Spanish (`es`).
