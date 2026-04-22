@@ -1,6 +1,8 @@
 from django.contrib import admin
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 from unfold.admin import ModelAdmin
+from unfold.widgets import UnfoldAdminColorInputWidget
 from project.admin import ModelAdminUnfoldBase
 from solo.admin import SingletonModelAdmin
 from .models import (
@@ -18,7 +20,10 @@ from .models import (
 
 @admin.register(CompanyProfile)
 class CompanyProfileAdmin(SingletonModelAdmin, ModelAdminUnfoldBase):
-    pass
+    def formfield_for_dbfield(self, db_field, **kwargs):
+        if db_field.name == "brand_color":
+            kwargs["widget"] = UnfoldAdminColorInputWidget
+        return super().formfield_for_dbfield(db_field, **kwargs)
 
 @admin.register(EventType)
 class EventTypeAdmin(ModelAdminUnfoldBase):

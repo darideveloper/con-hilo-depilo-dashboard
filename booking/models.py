@@ -60,7 +60,7 @@ class CompanyProfile(SingletonModel):
     name = models.CharField(max_length=100, default="Con Hilo Depilo")
     brand_color = models.CharField(
         max_length=50, 
-        default="oklch(0.68 0.28 296)",
+        default="#ee5837",
         validators=[
             RegexValidator(
                 regex=r"^(#[0-9a-fA-F]{6}|oklch\([\d.]+%? [\d.]+ [\d.]+\))$",
