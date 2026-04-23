@@ -51,7 +51,7 @@ msgstr ""
 #: booking/admin.py:158 booking/admin.py:174 booking/admin.py:187
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/tab_items.html:16
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: booking/admin.py:121
 msgid "Contact Information"
@@ -293,13 +293,17 @@ msgstr "Excepción de Fecha de Empresa"
 msgid "Company Date Overrides"
 msgstr "Excepciones de Fecha de Empresa"
 
-#: booking/models.py:159
+#: booking/admin.py:189 booking/models.py:159
 msgid "Service Availability"
 msgstr "Disponibilidad de Servicio"
 
-#: booking/models.py:160
+#: booking/admin.py:190 booking/models.py:160
 msgid "Service Availabilities"
 msgstr "Disponibilidades de Servicio"
+
+#: booking/admin.py:188
+msgid "Service Week Slots"
+msgstr "Franjas horarias de servicio"
 
 #: booking/models.py:166
 msgid "Service Weekday Slot"
@@ -313,7 +317,7 @@ msgstr "Franjas Horarias de Servicio"
 msgid "Service Date Override"
 msgstr "Excepción de Fecha de Servicio"
 
-#: booking/models.py:175
+#: booking/admin.py:191 booking/models.py:175
 msgid "Service Date Overrides"
 msgstr "Excepciones de Fecha de Servicio"
 

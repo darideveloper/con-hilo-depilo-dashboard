@@ -73,6 +73,9 @@ class BookingInline(BaseTabularInline):
     readonly_fields = fields
     can_delete = False
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
     def client_name(self, obj):
         return obj.booking.client_name
     client_name.short_description = _("Client")
@@ -185,10 +188,10 @@ class EventAdmin(ModelAdminUnfoldBase):
 
     tabs = [
         (_("General"), ["fieldsets"]),
-        (_("Date Ranges"), ["availabilities"]),
-        (_("Business Hours"), ["slots"]),
-        (_("Overrides"), ["overrides"]),
-        (_("Bookings"), ["bookings"]),
+        (_("Service Week Slots"), ["slots"]),
+        (_("Service Availability"), ["availabilities"]),
+        (_("Service Date Overrides"), ["overrides"]),
+        (_("Booking"), ["bookings"]),
     ]
 
 @admin.register(CompanyAvailability)
