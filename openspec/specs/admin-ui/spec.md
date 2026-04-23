@@ -13,11 +13,19 @@ The project SHALL use `django-unfold` to provide a modern, Tailwind-based admini
 - AND the `branding` template block MUST be explicitly defined in `base_site.html`.
 
 ### Requirement: Markdown Support in Admin
-Text areas in the admin interface SHALL support Markdown editing via SimpleMDE.
+All text areas in the admin interface SHALL support Markdown editing via SimpleMDE. The editor MUST provide a theme-aware preview that adapts to the project's dynamic branding.
 
-#### Scenario: Edit Markdown Field
-- When editing a model with a text area in the admin.
-- Then the field is enhanced with a SimpleMDE editor.
+#### Scenario: Global Markdown Application
+- **Given** any model with a `TextField` (rendered as a `textarea`) in the Django admin (e.g., `Event.description`).
+- **When** the change form is rendered.
+- **Then** the field MUST be automatically enhanced with a SimpleMDE editor.
+- **And** no `textarea` fields SHALL be excluded by default.
+
+#### Scenario: Styled and Theme-Aware Preview
+- **Given** a user is viewing the Markdown preview for a field.
+- **Then** the preview MUST render headings, lists, and blockquotes with distinct typography.
+- **And** the preview MUST use the project's dynamic CSS variables (e.g., `--brand-primary-600`) for links and accents.
+- **And** the styles MUST NOT leak into the surrounding admin interface.
 
 ### Requirement: Environment Badges
 The admin interface SHALL display a badge indicating the current environment (Production, Development, etc.).

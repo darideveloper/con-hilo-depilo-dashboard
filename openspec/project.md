@@ -20,7 +20,7 @@ The `leochan.sh.dashboard` project is a modern Django-based dashboard and admini
 - **Environment Driven:** Configuration is strictly environment-variable-first using `python-dotenv`.
 - **Naming:** Standard Django/Python (PEP 8) conventions.
 - **Admin UI:** Custom Tailwind styles are injected via `static/js/add_tailwind_styles.js`.
-- **Markdown:** Text areas in the admin are enhanced with SimpleMDE.
+- **Markdown:** All text areas in the admin are enhanced with SimpleMDE, featuring a custom typography layer that adapts to the project's dynamic brand colors.
 
 ### Architecture Patterns
 - **Environment Isolation:** Uses `.env`, `.env.dev`, and `.env.prod` to manage configurations.
