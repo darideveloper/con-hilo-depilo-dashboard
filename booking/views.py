@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.conf import settings
 from .models import CompanyProfile
-from .serializers import CompanyProfileSerializer
+from .serializers import CompanyProfileSerializer, BusinessHoursSerializer
 
 class CompanyConfigView(APIView):
     """
@@ -20,3 +20,15 @@ class CompanyConfigView(APIView):
         data['timezone'] = settings.TIME_ZONE
         
         return Response(data)
+
+class BusinessHoursView(APIView):
+    """
+    Public endpoint to fetch company business hours (weekday slots).
+    """
+    permission_classes = [AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        config = CompanyProfile.get_solo()
+        slots = config.weekday_slots.all().order_by('weekday', 'start_time')
+        serializer = BusinessHoursSerializer(slots, many=True)
+        return Response(serializer.data)

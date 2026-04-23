@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CompanyProfile
+from .models import CompanyProfile, CompanyWeekdaySlot
 
 class CompanyProfileSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(source='name')
@@ -20,3 +20,8 @@ class CompanyProfileSerializer(serializers.ModelSerializer):
             'availability_no_free_label',
             'extras_label',
         ]
+
+class BusinessHoursSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CompanyWeekdaySlot
+        fields = ['weekday', 'start_time', 'end_time']
