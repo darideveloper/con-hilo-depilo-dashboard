@@ -103,6 +103,7 @@ class EventType(models.Model):
     description = models.TextField(_("Description"), null=True, blank=True)
     payment_model = models.CharField(_("Payment model"), max_length=20, choices=PAYMENT_MODELS, default="POST-PAID")
     allow_overlap = models.BooleanField(_("Allow overlap"), default=False)
+    image = models.ImageField(_("Image"), upload_to="event_types/", null=True, blank=True)
 
     def __str__(self):
         return self.name

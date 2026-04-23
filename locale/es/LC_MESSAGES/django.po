@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-23 11:43-0600\n"
+"POT-Creation-Date: 2026-04-23 12:37-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,78 +19,82 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
 
-#: booking/admin.py:70 booking/models.py:200
+#: booking/admin.py:70 booking/admin.py:195 booking/models.py:201
 msgid "Booking"
 msgstr "Reserva"
 
-#: booking/admin.py:71 booking/admin.py:191 booking/models.py:201
+#: booking/admin.py:71 booking/models.py:202
 msgid "Bookings"
 msgstr "Reservas"
 
-#: booking/admin.py:78
+#: booking/admin.py:81
 msgid "Client"
 msgstr ""
 
-#: booking/admin.py:82
+#: booking/admin.py:85
 msgid "Date/Time"
 msgstr ""
 
-#: booking/admin.py:86 booking/models.py:192
+#: booking/admin.py:89 booking/models.py:193
 msgid "Status"
 msgstr ""
 
-#: booking/admin.py:95
+#: booking/admin.py:98
 msgid "Manage"
 msgstr ""
 
-#: booking/admin.py:97
+#: booking/admin.py:100
 msgid "Actions"
 msgstr ""
 
-#: booking/admin.py:113 booking/admin.py:130 booking/admin.py:147
-#: booking/admin.py:158 booking/admin.py:174 booking/admin.py:187
+#: booking/admin.py:116 booking/admin.py:133 booking/admin.py:150
+#: booking/admin.py:162 booking/admin.py:178 booking/admin.py:191
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/tab_items.html:16
 msgid "General"
 msgstr "General"
 
-#: booking/admin.py:121
+#: booking/admin.py:124
 msgid "Contact Information"
 msgstr ""
 
-#: booking/admin.py:131
+#: booking/admin.py:134
 msgid "Global Availability"
 msgstr ""
 
-#: booking/admin.py:132 booking/admin.py:189
+#: booking/admin.py:135
 msgid "Business Hours"
 msgstr ""
 
-#: booking/admin.py:133
+#: booking/admin.py:136
 msgid "Holidays"
 msgstr ""
 
-#: booking/admin.py:159 booking/admin.py:237 booking/models.py:127
-#: booking/models.py:186
+#: booking/admin.py:163 booking/admin.py:241 booking/models.py:128
+#: booking/models.py:187
 msgid "Services"
 msgstr ""
 
-#: booking/admin.py:188
-msgid "Date Ranges"
-msgstr ""
+#: booking/admin.py:192
+msgid "Service Week Slots"
+msgstr "Franjas horarias de servicio"
 
-#: booking/admin.py:190
-msgid "Overrides"
-msgstr ""
+#: booking/admin.py:193 booking/models.py:160
+msgid "Service Availability"
+msgstr "Disponibilidad de Servicio"
 
-#: booking/admin.py:231
+#: booking/admin.py:194 booking/models.py:176
+msgid "Service Date Overrides"
+msgstr "Excepciones de Fecha de Servicio"
+
+#: booking/admin.py:235
 msgid "Client Information"
 msgstr ""
 
-#: booking/admin.py:234
+#: booking/admin.py:238
 msgid "Scheduling"
 msgstr ""
 
-#: booking/admin.py:240
+#: booking/admin.py:244
 msgid "Integrations"
 msgstr ""
 
@@ -149,11 +153,11 @@ msgstr "Domingo"
 msgid "Weekday"
 msgstr "Día de la semana"
 
-#: booking/models.py:34 booking/models.py:50 booking/models.py:187
+#: booking/models.py:34 booking/models.py:50 booking/models.py:188
 msgid "Start time"
 msgstr "Hora de inicio"
 
-#: booking/models.py:35 booking/models.py:51 booking/models.py:188
+#: booking/models.py:35 booking/models.py:51 booking/models.py:189
 msgid "End time"
 msgstr "Hora de fin"
 
@@ -182,7 +186,7 @@ msgstr "No disponible"
 msgid "Start and end times are required if available."
 msgstr ""
 
-#: booking/models.py:72 booking/models.py:102 booking/models.py:116
+#: booking/models.py:72 booking/models.py:102 booking/models.py:117
 #: venv/lib/python3.12/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:19
 msgid "Name"
 msgstr "Nombre"
@@ -223,7 +227,7 @@ msgstr "Prepago"
 msgid "Post-paid"
 msgstr "Pos-pago"
 
-#: booking/models.py:103 booking/models.py:117
+#: booking/models.py:103 booking/models.py:118
 msgid "Description"
 msgstr "Descripción"
 
@@ -235,125 +239,113 @@ msgstr "Modelo de pago"
 msgid "Allow overlap"
 msgstr "Permitir solapamiento"
 
-#: booking/models.py:111
+#: booking/models.py:106 booking/models.py:121
+#: venv/lib/python3.12/site-packages/django/db/models/fields/files.py:420
+msgid "Image"
+msgstr "Imagen"
+
+#: booking/models.py:112
 msgid "Event Type"
 msgstr "Tipo de Evento"
 
-#: booking/models.py:112
+#: booking/models.py:113
 msgid "Event Types"
 msgstr "Tipos de Evento"
 
-#: booking/models.py:115
+#: booking/models.py:116
 msgid "Event type"
 msgstr "Tipo de evento"
 
-#: booking/models.py:118
+#: booking/models.py:119
 msgid "Price"
 msgstr "Precio"
 
-#: booking/models.py:119
+#: booking/models.py:120
 msgid "Duration (minutes)"
 msgstr "Duración (minutos)"
 
-#: booking/models.py:120
-#: venv/lib/python3.12/site-packages/django/db/models/fields/files.py:420
-msgid "Image"
-msgstr ""
-
-#: booking/models.py:126 booking/models.py:156 booking/models.py:163
-#: booking/models.py:171
+#: booking/models.py:127 booking/models.py:157 booking/models.py:164
+#: booking/models.py:172
 msgid "Service"
 msgstr "Servicio"
 
-#: booking/models.py:132 booking/models.py:139 booking/models.py:147
+#: booking/models.py:133 booking/models.py:140 booking/models.py:148
 msgid "Company"
 msgstr "Empresa"
 
-#: booking/models.py:135
+#: booking/models.py:136
 msgid "Company Availability"
 msgstr "Disponibilidad de Empresa"
 
-#: booking/models.py:136
+#: booking/models.py:137
 msgid "Company Availabilities"
 msgstr "Disponibilidades de Empresa"
 
-#: booking/models.py:142
+#: booking/models.py:143
 msgid "Company Weekday Slot"
 msgstr "Franja Horaria de Empresa"
 
-#: booking/models.py:143
+#: booking/models.py:144
 msgid "Company Weekday Slots"
 msgstr "Franjas Horarias de Empresa"
 
-#: booking/models.py:150
+#: booking/models.py:151
 msgid "Company Date Override"
 msgstr "Excepción de Fecha de Empresa"
 
-#: booking/models.py:151
+#: booking/models.py:152
 msgid "Company Date Overrides"
 msgstr "Excepciones de Fecha de Empresa"
 
-#: booking/admin.py:189 booking/models.py:159
-msgid "Service Availability"
-msgstr "Disponibilidad de Servicio"
-
-#: booking/admin.py:190 booking/models.py:160
+#: booking/models.py:161
 msgid "Service Availabilities"
 msgstr "Disponibilidades de Servicio"
 
-#: booking/admin.py:188
-msgid "Service Week Slots"
-msgstr "Franjas horarias de servicio"
-
-#: booking/models.py:166
+#: booking/models.py:167
 msgid "Service Weekday Slot"
 msgstr "Franja Horaria de Servicio"
 
-#: booking/models.py:167
+#: booking/models.py:168
 msgid "Service Weekday Slots"
 msgstr "Franjas Horarias de Servicio"
 
-#: booking/models.py:174
+#: booking/models.py:175
 msgid "Service Date Override"
 msgstr "Excepción de Fecha de Servicio"
 
-#: booking/admin.py:191 booking/models.py:175
-msgid "Service Date Overrides"
-msgstr "Excepciones de Fecha de Servicio"
-
-#: booking/models.py:181
+#: booking/models.py:182
 msgid "Pending"
 msgstr "Pendiente"
 
-#: booking/models.py:182
+#: booking/models.py:183
 msgid "Confirmed"
 msgstr "Confirmada"
 
-#: booking/models.py:183
+#: booking/models.py:184
 msgid "Paid"
 msgstr "Pagada"
 
-#: booking/models.py:184
+#: booking/models.py:185
 msgid "Cancelled"
 msgstr "Cancelada"
 
-#: booking/models.py:189
+#: booking/models.py:190
 msgid "Client name"
 msgstr "Nombre del cliente"
 
-#: booking/models.py:190
+#: booking/models.py:191
 msgid "Client email"
 msgstr "Correo del cliente"
 
-#: booking/models.py:191
+#: booking/models.py:192
 msgid "Client phone"
 msgstr "Teléfono del cliente"
 
-#: booking/models.py:193
+#: booking/models.py:194
 msgid "Google event ID"
 msgstr "ID de evento de Google"
 
-#: booking/models.py:194
+#: booking/models.py:195
 msgid "Stripe payment ID"
 msgstr "ID de pago de Stripe"
 

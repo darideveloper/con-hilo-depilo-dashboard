@@ -153,6 +153,7 @@ class EventTypeAdmin(ModelAdminUnfoldBase):
                 "description",
                 "payment_model",
                 "allow_overlap",
+                "image",
             )
         }),
     )

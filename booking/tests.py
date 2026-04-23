@@ -5,6 +5,12 @@ from django.db import transaction
 from django.db.utils import IntegrityError
 from .models import CompanyProfile, EventType, Event, Booking, CompanyWeekdaySlot
 
+class EventTypeTest(TestCase):
+    def test_image_is_optional(self):
+        # Should be able to create without an image
+        event_type = EventType.objects.create(name="No Image Type")
+        self.assertFalse(bool(event_type.image))
+
 class CompanyProfileTest(TestCase):
     def test_singleton(self):
         CompanyProfile.objects.create(brand_color="#123456")
@@ -49,6 +55,10 @@ class BookingDurationTest(TestCase):
         self.assertEqual(booking.end_time, expected_end_time)
 
 class AvailabilityConstraintTest(TestCase):
+    def setUp(self):
+        # Required because CompanyWeekdaySlot has default=1 for company FK
+        CompanyProfile.objects.get_or_create(id=1)
+
     def test_unique_slot(self):
         CompanyWeekdaySlot.objects.create(
             weekday=0,

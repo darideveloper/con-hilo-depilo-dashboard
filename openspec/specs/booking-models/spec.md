@@ -97,3 +97,12 @@ All models and fields within the `booking` application MUST have translatable la
 - WHEN switching to Spanish
 - THEN "Nombre del cliente" MUST be displayed.
 
+### Requirement: Service Visualization
+The `EventType` model MUST support an optional image for visual categorization in the service catalog.
+
+#### Scenario: Adding an Image to Event Type
+- GIVEN the Event Type admin interface
+- WHEN an administrator uploads an image for the "General Consultation" event type
+- THEN the system MUST store the image and associate it with that event type.
+- AND the image MUST be optional.
+
