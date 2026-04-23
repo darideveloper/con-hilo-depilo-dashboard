@@ -73,3 +73,13 @@ The administrative sidebar SHALL focus on high-priority tasks by hiding secondar
 - **And** specifically, the "Disponibilidad" item must be removed from the "Configuración" section.
 - **And** only the primary entities (`Bookings`, `Services`, `Company Profile`) should remain visible in their respective categories.
 
+### Requirement: Global App Translation
+Application-level configurations (like `AppConfig`) MUST have translatable labels to support consistent multi-language dashboard interfaces.
+
+#### Scenario: Translating App Labels
+- GIVEN the Django Admin
+- WHEN viewing the application list in English
+- THEN the "booking" app MUST be labeled "Booking Management" (or similar).
+- WHEN switching to Spanish
+- THEN the "booking" app MUST be labeled "Gestión de Reservas" (or similar).
+

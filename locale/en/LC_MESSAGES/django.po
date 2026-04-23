@@ -16,16 +16,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: booking/admin.py:70 booking/models.py:200
 msgid "Booking"
-msgstr "Reserva"
+msgstr ""
 
 #: booking/admin.py:71 booking/admin.py:191 booking/models.py:201
 msgid "Bookings"
-msgstr "Reservas"
+msgstr ""
 
 #: booking/admin.py:78
 msgid "Client"
@@ -96,7 +95,7 @@ msgstr ""
 
 #: booking/apps.py:8
 msgid "Booking Management"
-msgstr "Gestión de Reservas"
+msgstr ""
 
 #: booking/models.py:10
 msgid "Start date"
@@ -113,49 +112,49 @@ msgstr ""
 #: booking/models.py:25
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:7
 msgid "Monday"
-msgstr "Lunes"
+msgstr ""
 
 #: booking/models.py:26
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:8
 msgid "Tuesday"
-msgstr "Martes"
+msgstr ""
 
 #: booking/models.py:27
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:9
 msgid "Wednesday"
-msgstr "Miércoles"
+msgstr ""
 
 #: booking/models.py:28
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:10
 msgid "Thursday"
-msgstr "Jueves"
+msgstr ""
 
 #: booking/models.py:29
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:11
 msgid "Friday"
-msgstr "Viernes"
+msgstr ""
 
 #: booking/models.py:30
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:12
 msgid "Saturday"
-msgstr "Sábado"
+msgstr ""
 
 #: booking/models.py:31
 #: venv/lib/python3.12/site-packages/django/utils/dates.py:13
 msgid "Sunday"
-msgstr "Domingo"
+msgstr ""
 
 #: booking/models.py:33
 msgid "Weekday"
-msgstr "Día de la semana"
+msgstr ""
 
 #: booking/models.py:34 booking/models.py:50 booking/models.py:187
 msgid "Start time"
-msgstr "Hora de inicio"
+msgstr ""
 
 #: booking/models.py:35 booking/models.py:51 booking/models.py:188
 msgid "End time"
-msgstr "Hora de fin"
+msgstr ""
 
 #: booking/models.py:45 booking/models.py:67
 msgid "Start time must be before end time."
@@ -164,19 +163,19 @@ msgstr ""
 #: booking/models.py:48 venv/lib/python3.12/site-packages/unfold/widgets.py:605
 #: venv/lib/python3.12/site-packages/unfold/widgets.py:646
 msgid "Date"
-msgstr "Fecha"
+msgstr ""
 
 #: booking/models.py:49
 msgid "Is available"
-msgstr "Está disponible"
+msgstr ""
 
 #: booking/models.py:57
 msgid "Available"
-msgstr "Disponible"
+msgstr ""
 
 #: booking/models.py:57
 msgid "Unavailable"
-msgstr "No disponible"
+msgstr ""
 
 #: booking/models.py:65
 msgid "Start and end times are required if available."
@@ -185,75 +184,75 @@ msgstr ""
 #: booking/models.py:72 booking/models.py:102 booking/models.py:116
 #: venv/lib/python3.12/site-packages/unfold/contrib/constance/templates/admin/constance/includes/results_list.html:19
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #: booking/models.py:74
 msgid "Brand color"
-msgstr "Color de marca"
+msgstr ""
 
 #: booking/models.py:80
 msgid "Enter a valid HEX color or OKLCH format (e.g., oklch(0.68 0.28 296))"
-msgstr "Ingrese un color HEX válido o formato OKLCH (ej: oklch(0.68 0.28 296))"
+msgstr ""
 
 #: booking/models.py:84
 msgid "Logo"
-msgstr "Logotipo"
+msgstr ""
 
 #: booking/models.py:85
 msgid "Contact email"
-msgstr "Correo de contacto"
+msgstr ""
 
 #: booking/models.py:86
 msgid "Contact phone"
-msgstr "Teléfono de contacto"
+msgstr ""
 
 #: booking/models.py:87
 msgid "Currency"
-msgstr "Moneda"
+msgstr ""
 
 #: booking/models.py:90 booking/models.py:93
 msgid "Company Profile"
-msgstr "Perfil de Empresa"
+msgstr ""
 
 #: booking/models.py:99
 msgid "Pre-paid"
-msgstr "Prepago"
+msgstr ""
 
 #: booking/models.py:100
 msgid "Post-paid"
-msgstr "Pos-pago"
+msgstr ""
 
 #: booking/models.py:103 booking/models.py:117
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #: booking/models.py:104
 msgid "Payment model"
-msgstr "Modelo de pago"
+msgstr ""
 
 #: booking/models.py:105
 msgid "Allow overlap"
-msgstr "Permitir solapamiento"
+msgstr ""
 
 #: booking/models.py:111
 msgid "Event Type"
-msgstr "Tipo de Evento"
+msgstr ""
 
 #: booking/models.py:112
 msgid "Event Types"
-msgstr "Tipos de Evento"
+msgstr ""
 
 #: booking/models.py:115
 msgid "Event type"
-msgstr "Tipo de evento"
+msgstr ""
 
 #: booking/models.py:118
 msgid "Price"
-msgstr "Precio"
+msgstr ""
 
 #: booking/models.py:119
 msgid "Duration (minutes)"
-msgstr "Duración (minutos)"
+msgstr ""
 
 #: booking/models.py:120
 #: venv/lib/python3.12/site-packages/django/db/models/fields/files.py:420
@@ -263,95 +262,95 @@ msgstr ""
 #: booking/models.py:126 booking/models.py:156 booking/models.py:163
 #: booking/models.py:171
 msgid "Service"
-msgstr "Servicio"
+msgstr ""
 
 #: booking/models.py:132 booking/models.py:139 booking/models.py:147
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #: booking/models.py:135
 msgid "Company Availability"
-msgstr "Disponibilidad de Empresa"
+msgstr ""
 
 #: booking/models.py:136
 msgid "Company Availabilities"
-msgstr "Disponibilidades de Empresa"
+msgstr ""
 
 #: booking/models.py:142
 msgid "Company Weekday Slot"
-msgstr "Franja Horaria de Empresa"
+msgstr ""
 
 #: booking/models.py:143
 msgid "Company Weekday Slots"
-msgstr "Franjas Horarias de Empresa"
+msgstr ""
 
 #: booking/models.py:150
 msgid "Company Date Override"
-msgstr "Excepción de Fecha de Empresa"
+msgstr ""
 
 #: booking/models.py:151
 msgid "Company Date Overrides"
-msgstr "Excepciones de Fecha de Empresa"
+msgstr ""
 
 #: booking/models.py:159
 msgid "Service Availability"
-msgstr "Disponibilidad de Servicio"
+msgstr ""
 
 #: booking/models.py:160
 msgid "Service Availabilities"
-msgstr "Disponibilidades de Servicio"
+msgstr ""
 
 #: booking/models.py:166
 msgid "Service Weekday Slot"
-msgstr "Franja Horaria de Servicio"
+msgstr ""
 
 #: booking/models.py:167
 msgid "Service Weekday Slots"
-msgstr "Franjas Horarias de Servicio"
+msgstr ""
 
 #: booking/models.py:174
 msgid "Service Date Override"
-msgstr "Excepción de Fecha de Servicio"
+msgstr ""
 
 #: booking/models.py:175
 msgid "Service Date Overrides"
-msgstr "Excepciones de Fecha de Servicio"
+msgstr ""
 
 #: booking/models.py:181
 msgid "Pending"
-msgstr "Pendiente"
+msgstr ""
 
 #: booking/models.py:182
 msgid "Confirmed"
-msgstr "Confirmada"
+msgstr ""
 
 #: booking/models.py:183
 msgid "Paid"
-msgstr "Pagada"
+msgstr ""
 
 #: booking/models.py:184
 msgid "Cancelled"
-msgstr "Cancelada"
+msgstr ""
 
 #: booking/models.py:189
 msgid "Client name"
-msgstr "Nombre del cliente"
+msgstr ""
 
 #: booking/models.py:190
 msgid "Client email"
-msgstr "Correo del cliente"
+msgstr ""
 
 #: booking/models.py:191
 msgid "Client phone"
-msgstr "Teléfono del cliente"
+msgstr ""
 
 #: booking/models.py:193
 msgid "Google event ID"
-msgstr "ID de evento de Google"
+msgstr ""
 
 #: booking/models.py:194
 msgid "Stripe payment ID"
-msgstr "ID de pago de Stripe"
+msgstr ""
 
 #: project/settings.py:137
 msgid "Spanish"
@@ -363,35 +362,35 @@ msgstr ""
 
 #: project/settings.py:282
 msgid "Gestión"
-msgstr ""
+msgstr "Management"
 
 #: project/settings.py:287
 msgid "Reservas"
-msgstr ""
+msgstr "Bookings"
 
 #: project/settings.py:292
 msgid "Servicios"
-msgstr ""
+msgstr "Services"
 
 #: project/settings.py:299
 msgid "Configuración"
-msgstr ""
+msgstr "Settings"
 
 #: project/settings.py:304
 msgid "Perfil de Empresa"
-msgstr ""
+msgstr "Company Profile"
 
 #: project/settings.py:311
 msgid "Autenticación"
-msgstr ""
+msgstr "Authentication"
 
 #: project/settings.py:316
 msgid "Usuarios"
-msgstr ""
+msgstr "Users"
 
 #: project/settings.py:321
 msgid "Grupos"
-msgstr ""
+msgstr "Groups"
 
 #: venv/lib/python3.12/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
@@ -2077,7 +2076,7 @@ msgstr ""
 
 #: venv/lib/python3.12/site-packages/unfold/templates/admin/change_list.html:67
 msgid "Filters"
-msgstr "Filtros"
+msgstr ""
 
 #: venv/lib/python3.12/site-packages/unfold/templates/admin/change_list_results.html:33
 msgid "Expand row"
@@ -2338,18 +2337,16 @@ msgstr ""
 
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/empty_results.html:14
 msgid "No results found"
-msgstr "No se encontraron resultados"
+msgstr ""
 
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/empty_results.html:18
 msgid ""
 "This page yielded into no results. Create a new item or reset your filters."
 msgstr ""
-"Esta página no produjo resultados. Crea un nuevo elemento o restablece tus "
-"filtros."
 
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/empty_results.html:32
 msgid "Reset filters"
-msgstr "Restablecer filtros"
+msgstr ""
 
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/helpers/field_readonly_value_file.html:8
 #: venv/lib/python3.12/site-packages/unfold/templates/unfold/widgets/clearable_file_input.html:6
@@ -2477,6 +2474,3 @@ msgstr ""
 #: venv/lib/python3.12/site-packages/unfold/widgets.py:844
 msgid "Select currency"
 msgstr ""
-
-#~ msgid "Search"
-#~ msgstr "Buscar"

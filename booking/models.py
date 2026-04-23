@@ -7,8 +7,8 @@ from solo.models import SingletonModel
 # --- Abstract Bases ---
 
 class BaseAvailabilityRange(models.Model):
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(_("Start date"))
+    end_date = models.DateField(_("End date"))
 
     class Meta:
         abstract = True
@@ -30,9 +30,9 @@ class BaseAvailabilitySlot(models.Model):
         (5, _("Saturday")),
         (6, _("Sunday")),
     ]
-    weekday = models.IntegerField(choices=WEEKDAYS)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    weekday = models.IntegerField(_("Weekday"), choices=WEEKDAYS)
+    start_time = models.TimeField(_("Start time"))
+    end_time = models.TimeField(_("End time"))
 
     class Meta:
         abstract = True
@@ -45,10 +45,10 @@ class BaseAvailabilitySlot(models.Model):
             raise ValidationError(_("Start time must be before end time."))
 
 class BaseDateOverride(models.Model):
-    date = models.DateField()
-    is_available = models.BooleanField(default=False)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True)
+    date = models.DateField(_("Date"))
+    is_available = models.BooleanField(_("Is available"), default=False)
+    start_time = models.TimeField(_("Start time"), null=True, blank=True)
+    end_time = models.TimeField(_("End time"), null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -69,8 +69,9 @@ class BaseDateOverride(models.Model):
 # --- Company Profile ---
 
 class CompanyProfile(SingletonModel):
-    name = models.CharField(max_length=100, default="Con Hilo Depilo")
+    name = models.CharField(_("Name"), max_length=100, default="Con Hilo Depilo")
     brand_color = models.CharField(
+        _("Brand color"),
         max_length=50, 
         default="#ee5837",
         validators=[
@@ -80,10 +81,10 @@ class CompanyProfile(SingletonModel):
             )
         ]
     )
-    logo = models.ImageField(upload_to="branding/", null=True, blank=True)
-    contact_email = models.EmailField(null=True, blank=True)
-    contact_phone = models.CharField(max_length=20, null=True, blank=True)
-    currency = models.CharField(max_length=10, default="EUR")
+    logo = models.ImageField(_("Logo"), upload_to="branding/", null=True, blank=True)
+    contact_email = models.EmailField(_("Contact email"), null=True, blank=True)
+    contact_phone = models.CharField(_("Contact phone"), max_length=20, null=True, blank=True)
+    currency = models.CharField(_("Currency"), max_length=10, default="EUR")
 
     def __str__(self):
         return str(_("Company Profile"))
@@ -98,64 +99,80 @@ class EventType(models.Model):
         ("PRE-PAID", _("Pre-paid")),
         ("POST-PAID", _("Post-paid")),
     ]
-    name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    payment_model = models.CharField(max_length=20, choices=PAYMENT_MODELS, default="POST-PAID")
-    allow_overlap = models.BooleanField(default=False)
+    name = models.CharField(_("Name"), max_length=100)
+    description = models.TextField(_("Description"), null=True, blank=True)
+    payment_model = models.CharField(_("Payment model"), max_length=20, choices=PAYMENT_MODELS, default="POST-PAID")
+    allow_overlap = models.BooleanField(_("Allow overlap"), default=False)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _("Event Type")
+        verbose_name_plural = _("Event Types")
 
 class Event(models.Model):
-    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE, related_name="events")
-    name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    duration_minutes = models.PositiveIntegerField()
-    image = models.ImageField(upload_to="events/", null=True, blank=True)
+    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE, related_name="events", verbose_name=_("Event type"))
+    name = models.CharField(_("Name"), max_length=100)
+    description = models.TextField(_("Description"), null=True, blank=True)
+    price = models.DecimalField(_("Price"), max_digits=10, decimal_places=2)
+    duration_minutes = models.PositiveIntegerField(_("Duration (minutes)"))
+    image = models.ImageField(_("Image"), upload_to="events/", null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = _("Service")
+        verbose_name_plural = _("Services")
 
 # --- Company Availability ---
 
 class CompanyAvailability(BaseAvailabilityRange):
-    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="availabilities", default=1)
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="availabilities", default=1, verbose_name=_("Company"))
 
     class Meta:
+        verbose_name = _("Company Availability")
         verbose_name_plural = _("Company Availabilities")
 
 class CompanyWeekdaySlot(BaseAvailabilitySlot):
-    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="weekday_slots", default=1)
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="weekday_slots", default=1, verbose_name=_("Company"))
 
     class Meta:
+        verbose_name = _("Company Weekday Slot")
+        verbose_name_plural = _("Company Weekday Slots")
         unique_together = ("company", "weekday", "start_time", "end_time")
 
 class CompanyDateOverride(BaseDateOverride):
-    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="overrides", default=1)
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="overrides", default=1, verbose_name=_("Company"))
 
     class Meta:
+        verbose_name = _("Company Date Override")
         verbose_name_plural = _("Company Date Overrides")
 
 # --- Event Availability ---
 
 class EventAvailability(BaseAvailabilityRange):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="availabilities")
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="availabilities", verbose_name=_("Service"))
     
     class Meta:
-        verbose_name_plural = _("Event Availabilities")
+        verbose_name = _("Service Availability")
+        verbose_name_plural = _("Service Availabilities")
 
 class AvailabilitySlot(BaseAvailabilitySlot):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="slots")
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="slots", verbose_name=_("Service"))
 
     class Meta:
+        verbose_name = _("Service Weekday Slot")
+        verbose_name_plural = _("Service Weekday Slots")
         unique_together = ("event", "weekday", "start_time", "end_time")
 
 class EventDateOverride(BaseDateOverride):
-    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="overrides")
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name="overrides", verbose_name=_("Service"))
     
     class Meta:
-        verbose_name_plural = _("Event Date Overrides")
+        verbose_name = _("Service Date Override")
+        verbose_name_plural = _("Service Date Overrides")
 
 # --- Booking ---
 
@@ -166,15 +183,15 @@ class Booking(models.Model):
         ("PAID", _("Paid")),
         ("CANCELLED", _("Cancelled")),
     ]
-    services = models.ManyToManyField(Event, related_name="bookings")
-    start_time = models.DateTimeField(db_index=True)
-    end_time = models.DateTimeField(db_index=True, null=True, blank=True)
-    client_name = models.CharField(max_length=255)
-    client_email = models.EmailField()
-    client_phone = models.CharField(max_length=20, null=True, blank=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="PENDING", db_index=True)
-    google_event_id = models.CharField(max_length=255, null=True, blank=True)
-    stripe_payment_id = models.CharField(max_length=255, null=True, blank=True)
+    services = models.ManyToManyField(Event, related_name="bookings", verbose_name=_("Services"))
+    start_time = models.DateTimeField(_("Start time"), db_index=True)
+    end_time = models.DateTimeField(_("End time"), db_index=True, null=True, blank=True)
+    client_name = models.CharField(_("Client name"), max_length=255)
+    client_email = models.EmailField(_("Client email"))
+    client_phone = models.CharField(_("Client phone"), max_length=20, null=True, blank=True)
+    status = models.CharField(_("Status"), max_length=20, choices=STATUS_CHOICES, default="PENDING", db_index=True)
+    google_event_id = models.CharField(_("Google event ID"), max_length=255, null=True, blank=True)
+    stripe_payment_id = models.CharField(_("Stripe payment ID"), max_length=255, null=True, blank=True)
 
     def __str__(self):
         return f"{self.client_name} - {self.start_time}"
@@ -187,8 +204,6 @@ class Booking(models.Model):
         if not self.start_time:
             return None
         
-        # We need to handle both new and existing instances
-        # If it's new and hasn't been saved, services.all() will be empty
         total_duration = sum(event.duration_minutes for event in self.services.all())
         from datetime import timedelta
         return self.start_time + timedelta(minutes=total_duration)
