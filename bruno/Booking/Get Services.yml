@@ -1,0 +1,13 @@
+meta:
+  name: Get Services
+  type: http
+  seq: 1
+request:
+  method: get
+  url: "{{baseUrl}}/services/"
+  headers:
+    - name: Accept
+      value: application/json
+response:
+  expect:
+    status: 200

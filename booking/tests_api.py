@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from datetime import time
-from .models import CompanyProfile, CompanyWeekdaySlot
+from .models import CompanyProfile, CompanyWeekdaySlot, EventType, Event
 
 class ConfigAPITest(APITestCase):
     def setUp(self):
@@ -82,3 +82,35 @@ class BusinessHoursAPITest(APITestCase):
         self.client.force_authenticate(user=None)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+class ServicesAPITest(APITestCase):
+    def setUp(self):
+        self.url = reverse('api-services')
+        self.category = EventType.objects.create(name="Tours", description="Historical tours")
+        self.service = Event.objects.create(
+            event_type=self.category,
+            name="Alhambra Tour",
+            description="Guided tour",
+            price="100.00",
+            duration_minutes=180
+        )
+
+    def test_get_services_success(self):
+        """
+        Verify that GET /api/services/ returns 200 and the correct JSON structure.
+        """
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+        data = response.json()
+        self.assertEqual(len(data), 1)
+        
+        category = data[0]
+        self.assertEqual(category['name'], "Tours")
+        self.assertEqual(len(category['services']), 1)
+        
+        service = category['services'][0]
+        self.assertEqual(service['title'], "Alhambra Tour")
+        self.assertEqual(service['price'], "100.00")
+        self.assertEqual(service['duration'], 180)
+        self.assertNotIn('slots', service)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CompanyProfile, CompanyWeekdaySlot
+from .models import CompanyProfile, CompanyWeekdaySlot, Event, EventType
 
 class CompanyProfileSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(source='name')
@@ -25,3 +25,18 @@ class BusinessHoursSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompanyWeekdaySlot
         fields = ['weekday', 'start_time', 'end_time']
+
+class EventSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(source='name')
+    duration = serializers.IntegerField(source='duration_minutes')
+
+    class Meta:
+        model = Event
+        fields = ['id', 'title', 'description', 'price', 'duration', 'image']
+
+class EventTypeSerializer(serializers.ModelSerializer):
+    services = EventSerializer(source='events', many=True, read_only=True)
+
+    class Meta:
+        model = EventType
+        fields = ['id', 'name', 'description', 'image', 'services']
