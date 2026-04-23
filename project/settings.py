@@ -199,6 +199,8 @@ else:
     }
 
 # CORS & CSRF Configuration
+CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS", "False") == "True"
+
 cors_allowed = os.getenv("CORS_ALLOWED_ORIGINS")
 if cors_allowed and cors_allowed != "None":
     CORS_ALLOWED_ORIGINS = [
