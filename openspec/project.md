@@ -27,6 +27,7 @@ The `leochan.sh.dashboard` project is a modern Django-based dashboard and admini
 - **Dynamic Backends:** Database and Storage backends switch automatically based on the `ENV` and `STORAGE_AWS` flags.
 - **Custom Backends:** Storage logic is centralized in `project/storage_backends.py`.
 - **API Standards:** Standardized error responses via `project/handlers.py` and metadata-rich pagination via `project/pagination.py`.
+- **API Synchronization:** Any modification, creation, or deletion of an API endpoint must be accompanied by corresponding updates to the automated tests AND the Bruno OpenCollection files (`bruno/**/*.yml`) in the same development cycle.
 - **Utility Helpers:** Logic is organized into modular utility files (e.g., `utils/media.py`, `utils/admin_helpers.py`).
 
 ### Testing Strategy
