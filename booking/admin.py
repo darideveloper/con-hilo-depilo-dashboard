@@ -102,7 +102,12 @@ class BookingInline(BaseTabularInline):
 class EventInline(BaseTabularInline):
     model = Event
     fields = ("name", "price", "duration_minutes")
+    readonly_fields = ("name", "price", "duration_minutes")
+    can_delete = False
     show_change_link = True
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 @admin.register(CompanyProfile)
 class CompanyProfileAdmin(SingletonModelAdmin, ModelAdminUnfoldBase):
