@@ -32,3 +32,4 @@ docs/
 
 # skip playwright
 .playwright-cli
+bruno/.env
