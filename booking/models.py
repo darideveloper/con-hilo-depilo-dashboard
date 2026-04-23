@@ -13,6 +13,9 @@ class BaseAvailabilityRange(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return f"{self.start_date} - {self.end_date}"
+
     def clean(self):
         if self.start_date > self.end_date:
             raise ValidationError(_("Start date cannot be after end date."))
@@ -34,6 +37,9 @@ class BaseAvailabilitySlot(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return f"{self.get_weekday_display()}: {self.start_time} - {self.end_time}"
+
     def clean(self):
         if self.start_time >= self.end_time:
             raise ValidationError(_("Start time must be before end time."))
@@ -46,6 +52,12 @@ class BaseDateOverride(models.Model):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        status = _("Available") if self.is_available else _("Unavailable")
+        if self.is_available:
+            return f"{self.date} ({status}: {self.start_time} - {self.end_time})"
+        return f"{self.date} ({status})"
 
     def clean(self):
         if self.is_available:
@@ -108,14 +120,20 @@ class Event(models.Model):
 # --- Company Availability ---
 
 class CompanyAvailability(BaseAvailabilityRange):
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="availabilities", default=1)
+
     class Meta:
         verbose_name_plural = _("Company Availabilities")
 
 class CompanyWeekdaySlot(BaseAvailabilitySlot):
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="weekday_slots", default=1)
+
     class Meta:
-        unique_together = ("weekday", "start_time", "end_time")
+        unique_together = ("company", "weekday", "start_time", "end_time")
 
 class CompanyDateOverride(BaseDateOverride):
+    company = models.ForeignKey(CompanyProfile, on_delete=models.CASCADE, related_name="overrides", default=1)
+
     class Meta:
         verbose_name_plural = _("Company Date Overrides")
 

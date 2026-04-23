@@ -301,11 +301,6 @@ UNFOLD = {
                 "collapsible": False,
                 "items": [
                     {
-                        "title": _("Disponibilidad"),
-                        "icon": "schedule",
-                        "link": reverse_lazy("admin:booking_companyavailability_changelist"),
-                    },
-                    {
                         "title": _("Perfil de Empresa"),
                         "icon": "business",
                         "link": reverse_lazy("admin:booking_companyprofile_changelist"),

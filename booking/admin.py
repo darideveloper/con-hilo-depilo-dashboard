@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from unfold.admin import ModelAdmin
+from django.utils.html import format_html
+from django.urls import reverse
+from unfold.admin import ModelAdmin, TabularInline
 from unfold.widgets import UnfoldAdminColorInputWidget
 from project.admin import ModelAdminUnfoldBase
 from solo.admin import SingletonModelAdmin
@@ -18,8 +20,119 @@ from .models import (
     Booking,
 )
 
+class BaseTabularInline(TabularInline):
+    tab = True
+    extra = 0
+
+class AvailabilitySlotInline(BaseTabularInline):
+    fields = ("weekday", "start_time", "end_time")
+
+    def get_extra(self, request, obj=None, **kwargs):
+        # Determine the related name based on the parent model
+        related_name = getattr(self, "related_name_attr", "slots")
+        if obj and getattr(obj, related_name).exists():
+            return 0
+        return 7
+
+    def get_formset(self, request, obj=None, **kwargs):
+        FormSet = super().get_formset(request, obj, **kwargs)
+        related_name = getattr(self, "related_name_attr", "slots")
+        
+        class InitialFormSet(FormSet):
+            def __init__(self, *args, **kwargs):
+                if not kwargs.get("initial") and (obj is None or not getattr(obj, related_name).exists()):
+                    kwargs["initial"] = [{"weekday": i} for i in range(7)]
+                super().__init__(*args, **kwargs)
+        return InitialFormSet
+
+class CompanyWeekdaySlotInline(AvailabilitySlotInline):
+    model = CompanyWeekdaySlot
+    related_name_attr = "weekday_slots"
+
+class CompanyAvailabilityInline(BaseTabularInline):
+    model = CompanyAvailability
+
+class CompanyDateOverrideInline(BaseTabularInline):
+    model = CompanyDateOverride
+
+class EventAvailabilitySlotInline(AvailabilitySlotInline):
+    model = AvailabilitySlot
+    related_name_attr = "slots"
+
+class EventAvailabilityInline(BaseTabularInline):
+    model = EventAvailability
+
+class EventDateOverrideInline(BaseTabularInline):
+    model = EventDateOverride
+
+class BookingInline(BaseTabularInline):
+    model = Booking.services.through
+    verbose_name = _("Booking")
+    verbose_name_plural = _("Bookings")
+    fields = ("client_name", "start_time", "status", "manage_booking")
+    readonly_fields = fields
+    can_delete = False
+
+    def client_name(self, obj):
+        return obj.booking.client_name
+    client_name.short_description = _("Client")
+
+    def start_time(self, obj):
+        return obj.booking.start_time
+    start_time.short_description = _("Date/Time")
+
+    def status(self, obj):
+        return obj.booking.get_status_display()
+    status.short_description = _("Status")
+
+    def manage_booking(self, obj):
+        if not obj.pk:
+            return ""
+        url = reverse("admin:booking_booking_change", args=[obj.booking.pk])
+        return format_html(
+            '<a class="bg-primary-600 font-medium px-4 py-1 rounded-md text-white text-xs" href="{}">{}</a>',
+            url,
+            _("Manage")
+        )
+    manage_booking.short_description = _("Actions")
+
+class EventInline(BaseTabularInline):
+    model = Event
+    fields = ("name", "price", "duration_minutes")
+    show_change_link = True
+
 @admin.register(CompanyProfile)
 class CompanyProfileAdmin(SingletonModelAdmin, ModelAdminUnfoldBase):
+    inlines = [
+        CompanyAvailabilityInline,
+        CompanyWeekdaySlotInline,
+        CompanyDateOverrideInline,
+    ]
+
+    fieldsets = (
+        (_("General"), {
+            "fields": (
+                "name",
+                "brand_color",
+                "logo",
+                "currency",
+            )
+        }),
+        (_("Contact Information"), {
+            "fields": (
+                "contact_email",
+                "contact_phone",
+            )
+        }),
+    )
+
+    tabs = [
+        (_("General"), ["fieldsets"]),
+        (_("Global Availability"), ["availabilities"]),
+        (_("Business Hours"), ["weekday_slots"]),
+        (_("Holidays"), ["overrides"]),
+    ]
+
     def formfield_for_dbfield(self, db_field, **kwargs):
         if db_field.name == "brand_color":
             kwargs["widget"] = UnfoldAdminColorInputWidget
@@ -28,11 +141,55 @@ class CompanyProfileAdmin(SingletonModelAdmin, ModelAdminUnfoldBase):
 @admin.register(EventType)
 class EventTypeAdmin(ModelAdminUnfoldBase):
     list_display = ("name", "payment_model", "allow_overlap")
+    inlines = [EventInline]
+
+    fieldsets = (
+        (_("General"), {
+            "fields": (
+                "name",
+                "description",
+                "payment_model",
+                "allow_overlap",
+            )
+        }),
+    )
+
+    tabs = [
+        (_("General"), ["fieldsets"]),
+        (_("Services"), ["events"]),
+    ]
 
 @admin.register(Event)
 class EventAdmin(ModelAdminUnfoldBase):
     list_display = ("name", "event_type", "price", "duration_minutes")
     list_filter = ("event_type",)
+    inlines = [
+        EventAvailabilityInline,
+        EventAvailabilitySlotInline,
+        EventDateOverrideInline,
+        BookingInline,
+    ]
+
+    fieldsets = (
+        (_("General"), {
+            "fields": (
+                "event_type",
+                "name",
+                "description",
+                "price",
+                "duration_minutes",
+                "image",
+            )
+        }),
+    )
+
+    tabs = [
+        (_("General"), ["fieldsets"]),
+        (_("Date Ranges"), ["availabilities"]),
+        (_("Business Hours"), ["slots"]),
+        (_("Overrides"), ["overrides"]),
+        (_("Bookings"), ["bookings"]),
+    ]
 
 @admin.register(CompanyAvailability)
 class CompanyAvailabilityAdmin(ModelAdminUnfoldBase):
