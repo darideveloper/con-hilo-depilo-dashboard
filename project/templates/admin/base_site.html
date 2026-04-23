@@ -1,5 +1,9 @@
 {% extends "admin/base.html" %} {% load static %}
 
+{% block title %}
+    {% if title %}{{ title }} | {% endif %}{{ site_title|default:"Con Hilo Depilo" }}
+{% endblock %}
+
 {% block branding %}
     {% include "unfold/helpers/site_branding.html" %}
 {% endblock %}
