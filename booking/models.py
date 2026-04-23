@@ -85,6 +85,14 @@ class CompanyProfile(SingletonModel):
     contact_email = models.EmailField(_("Contact email"), null=True, blank=True)
     contact_phone = models.CharField(_("Contact phone"), max_length=20, null=True, blank=True)
     currency = models.CharField(_("Currency"), max_length=10, default="EUR")
+    
+    # UI Labels
+    event_type_label = models.CharField(_("Event type label"), max_length=50, default="Service Category")
+    event_label = models.CharField(_("Event label"), max_length=50, default="Consultation")
+    availability_free_label = models.CharField(_("Availability free label"), max_length=50, default="Available")
+    availability_regular_label = models.CharField(_("Availability regular label"), max_length=50, default="Partial")
+    availability_no_free_label = models.CharField(_("Availability no free label"), max_length=50, default="Fully Booked")
+    extras_label = models.CharField(_("Extras label"), max_length=50, default="Add-ons")
 
     def __str__(self):
         return str(_("Company Profile"))

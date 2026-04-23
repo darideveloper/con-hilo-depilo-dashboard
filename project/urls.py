@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
 from rest_framework import routers
+from booking.views import CompanyConfigView
 
 # Initialize DRF Router
 router = routers.DefaultRouter()
@@ -16,6 +17,7 @@ urlpatterns = [
     path("", RedirectView.as_view(url="/admin/"), name="home-redirect-admin"),
     
     # API Endpoints
+    path("api/config/", CompanyConfigView.as_view(), name="api-config"),
     path("api/", include(router.urls)),
 ]
 

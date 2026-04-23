@@ -132,10 +132,21 @@ class CompanyProfileAdmin(SingletonModelAdmin, ModelAdminUnfoldBase):
                 "contact_phone",
             )
         }),
+        (_("UI Labels"), {
+            "fields": (
+                "event_type_label",
+                "event_label",
+                "availability_free_label",
+                "availability_regular_label",
+                "availability_no_free_label",
+                "extras_label",
+            )
+        }),
     )
 
     tabs = [
         (_("General"), ["fieldsets"]),
+        (_("UI Labels"), ["fieldsets"]),
         (_("Global Availability"), ["availabilities"]),
         (_("Business Hours"), ["weekday_slots"]),
         (_("Holidays"), ["overrides"]),
