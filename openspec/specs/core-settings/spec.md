@@ -27,33 +27,27 @@ The project SHALL support switching between local file storage and AWS S3 based 
 - Then files are uploaded to the configured S3 bucket.
 
 ### Requirement: Branding Context Processor
-The project SHALL include a context processor to provide derived brand colors to all templates without colliding with system variables.
+The project SHALL include a context processor to provide derived brand colors and site identity to all templates.
 
-#### Scenario: Inject Brand Colors via Unique Variable
-- GIVEN the `brand_theme_context` context processor is registered.
-- WHEN any template is rendered.
-- THEN the context variable `brand_colors` (containing 400, 500, 600 shades) MUST be available.
-- AND the context processor function MUST NOT be named `branding` to avoid collisions.
+#### Scenario: Inject Site Identity Globally
+- **Given** the `brand_theme_context` context processor is registered.
+- **When** any template is rendered.
+- **Then** the context variables `site_title` and `site_header` MUST be available and populated from the `CompanyProfile` model via callbacks.
 
 ### Requirement: Default Language Configuration
-The project's default language SHALL be configured to Spanish (`es`), and it SHALL support local translation overrides.
+The project's default language SHALL be configured to Spanish (`es`), and it SHALL support local translation overrides using English as the source language for all translatable strings.
 
-#### Scenario: Spanish Language Setup
-- Given the Django application is running.
-- When `LANGUAGE_CODE` is loaded from settings.
-- Then the language code MUST be `"es"` by default.
+#### Scenario: Standardized Localization Identifiers
+- **Given** any ModelAdmin, context processor, or settings file.
+- **When** defining translatable strings using `_()`.
+- **Then** the string inside `_()` MUST be in English.
+- **And** the Spanish translation MUST be provided in the corresponding `.po` file.
 
-#### Scenario: Environment Override for Language
-- Given `LANGUAGE_CODE=en-us` in the environment.
-- When the Django application starts.
-- Then the `LANGUAGE_CODE` setting MUST be `"en-us"`.
-
-#### Scenario: Local Translation Support
-- Given a `locale/` directory exists in the project root.
-- When the Django application starts.
-- Then the `LOCALE_PATHS` setting MUST include the path to this directory.
-- AND the `LANGUAGES` setting MUST be explicitly defined (e.g., including `es` and `en`).
-- AND strings defined in `locale/es/LC_MESSAGES/django.po` MUST take precedence over default translations.
+#### Scenario: Comprehensive UI Localization
+- **Given** the Spanish locale is active.
+- **When** navigating the admin sidebar, tabs, and fieldsets.
+- **Then** all labels MUST appear in Spanish.
+- **And** no English fallback labels SHOULD be visible in the primary navigation or configuration areas.
 
 ### Requirement: Environment Variable Documentation
 All environment-specific configuration files (`.env*`) SHALL include the `LANGUAGE_CODE` variable to ensure visibility across different stages.

@@ -29,23 +29,23 @@ msgstr "Reservas"
 
 #: booking/admin.py:81
 msgid "Client"
-msgstr ""
+msgstr "Cliente"
 
 #: booking/admin.py:85
 msgid "Date/Time"
-msgstr ""
+msgstr "Fecha/Hora"
 
 #: booking/admin.py:89 booking/models.py:193
 msgid "Status"
-msgstr ""
+msgstr "Estado"
 
 #: booking/admin.py:98
 msgid "Manage"
-msgstr ""
+msgstr "Gestionar"
 
 #: booking/admin.py:100
 msgid "Actions"
-msgstr ""
+msgstr "Acciones"
 
 #: booking/admin.py:116 booking/admin.py:133 booking/admin.py:150
 #: booking/admin.py:162 booking/admin.py:178 booking/admin.py:191
@@ -55,24 +55,24 @@ msgstr "General"
 
 #: booking/admin.py:124
 msgid "Contact Information"
-msgstr ""
+msgstr "Información de Contacto"
 
 #: booking/admin.py:134
 msgid "Global Availability"
-msgstr ""
+msgstr "Disponibilidad Global"
 
 #: booking/admin.py:135
 msgid "Business Hours"
-msgstr ""
+msgstr "Horario Comercial"
 
 #: booking/admin.py:136
 msgid "Holidays"
-msgstr ""
+msgstr "Festivos"
 
 #: booking/admin.py:163 booking/admin.py:241 booking/models.py:128
 #: booking/models.py:187
 msgid "Services"
-msgstr ""
+msgstr "Servicios"
 
 #: booking/admin.py:192
 msgid "Service Week Slots"
@@ -88,15 +88,15 @@ msgstr "Excepciones de Fecha de Servicio"
 
 #: booking/admin.py:235
 msgid "Client Information"
-msgstr ""
+msgstr "Información del Cliente"
 
 #: booking/admin.py:238
 msgid "Scheduling"
-msgstr ""
+msgstr "Programación"
 
 #: booking/admin.py:244
 msgid "Integrations"
-msgstr ""
+msgstr "Integraciones"
 
 #: booking/apps.py:8
 msgid "Booking Management"
@@ -351,43 +351,35 @@ msgstr "ID de pago de Stripe"
 
 #: project/settings.py:137
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: project/settings.py:138
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: project/settings.py:282
-msgid "Gestión"
-msgstr ""
-
-#: project/settings.py:287
-msgid "Reservas"
-msgstr ""
-
-#: project/settings.py:292
-msgid "Servicios"
-msgstr ""
+msgid "Management"
+msgstr "Gestión"
 
 #: project/settings.py:299
-msgid "Configuración"
-msgstr ""
-
-#: project/settings.py:304
-msgid "Perfil de Empresa"
-msgstr ""
+msgid "Configuration"
+msgstr "Configuración"
 
 #: project/settings.py:311
-msgid "Autenticación"
-msgstr ""
+msgid "Authentication"
+msgstr "Autenticación"
 
 #: project/settings.py:316
-msgid "Usuarios"
-msgstr ""
+msgid "Users"
+msgstr "Usuarios"
 
 #: project/settings.py:321
-msgid "Grupos"
-msgstr ""
+msgid "Groups"
+msgstr "Grupos"
+
+#: project/settings.py:270
+msgid "Dashboard"
+msgstr "Panel de Control"
 
 #: venv/lib/python3.12/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"

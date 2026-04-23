@@ -242,7 +242,7 @@ EMAILS_NOTIFICATIONS = os.getenv("EMAILS_NOTIFICATIONS", "").split(",")
 UNFOLD = {
     "SITE_TITLE": "utils.callbacks.site_title_callback",
     "SITE_HEADER": "utils.callbacks.site_header_callback",
-    "SITE_SUBHEADER": "Dashboard",
+    "SITE_SUBHEADER": _("Dashboard"),
     "SITE_URL": "/",
     "SITE_ICON": "utils.callbacks.site_icon_callback",
     # "SITE_LOGO": "utils.callbacks.site_icon_callback",
@@ -279,46 +279,46 @@ UNFOLD = {
         "show_all_applications": False,
         "navigation": [
             {
-                "title": _("Gestión"),
+                "title": _("Management"),
                 "separator": True,
                 "collapsible": False,
                 "items": [
                     {
-                        "title": _("Reservas"),
+                        "title": _("Bookings"),
                         "icon": "event",
                         "link": reverse_lazy("admin:booking_booking_changelist"),
                     },
                     {
-                        "title": _("Servicios"),
+                        "title": _("Services"),
                         "icon": "inventory_2",
                         "link": reverse_lazy("admin:booking_event_changelist"),
                     },
                 ],
             },
             {
-                "title": _("Configuración"),
+                "title": _("Configuration"),
                 "separator": True,
                 "collapsible": False,
                 "items": [
                     {
-                        "title": _("Perfil de Empresa"),
+                        "title": _("Company Profile"),
                         "icon": "business",
                         "link": reverse_lazy("admin:booking_companyprofile_changelist"),
                     },
                 ],
             },
             {
-                "title": _("Autenticación"),
+                "title": _("Authentication"),
                 "separator": True,
                 "collapsible": False,
                 "items": [
                     {
-                        "title": _("Usuarios"),
+                        "title": _("Users"),
                         "icon": "person",
                         "link": reverse_lazy("admin:auth_user_changelist"),
                     },
                     {
-                        "title": _("Grupos"),
+                        "title": _("Groups"),
                         "icon": "group",
                         "link": reverse_lazy("admin:auth_group_changelist"),
                     },
