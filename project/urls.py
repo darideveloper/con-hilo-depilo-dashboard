@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
 from rest_framework import routers
-from booking.views import CompanyConfigView, BusinessHoursView, ServicesListView
+from booking.views import CompanyConfigView, BusinessHoursView, ServicesListView, AvailabilityView
 
 # Initialize DRF Router
 router = routers.DefaultRouter()
@@ -20,6 +20,7 @@ urlpatterns = [
     path("api/config/", CompanyConfigView.as_view(), name="api-config"),
     path("api/business-hours/", BusinessHoursView.as_view(), name="api-business-hours"),
     path("api/services/", ServicesListView.as_view(), name="api-services"),
+    path("api/availability/days/", AvailabilityView.as_view(), name="api-availability-days"),
     path("api/", include(router.urls)),
 ]
 

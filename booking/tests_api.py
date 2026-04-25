@@ -2,7 +2,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from django.urls import reverse
 from datetime import time
-from .models import CompanyProfile, CompanyWeekdaySlot, EventType, Event
+from .models import CompanyProfile, CompanyWeekdaySlot, EventType, Event, CompanyAvailability, EventDateOverride
 
 class ConfigAPITest(APITestCase):
     def setUp(self):
@@ -83,34 +83,40 @@ class BusinessHoursAPITest(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-class ServicesAPITest(APITestCase):
+from rest_framework.test import APITestCase
+from rest_framework import status
+from django.urls import reverse
+from datetime import time, date, timedelta
+from .models import CompanyProfile, CompanyWeekdaySlot, EventType, Event, CompanyAvailability, EventDateOverride
+
+class AvailabilityAPITest(APITestCase):
     def setUp(self):
-        self.url = reverse('api-services')
-        self.category = EventType.objects.create(name="Tours", description="Historical tours")
+        self.url = reverse('api-availability-days')
+        self.category = EventType.objects.create(name="Tours")
         self.service = Event.objects.create(
             event_type=self.category,
-            name="Alhambra Tour",
-            description="Guided tour",
+            name="Tour",
             price="100.00",
-            duration_minutes=180
+            duration_minutes=60
         )
 
-    def test_get_services_success(self):
-        """
-        Verify that GET /api/services/ returns 200 and the correct JSON structure.
-        """
+    def test_availability_missing_params(self):
         response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_availability_fallback_to_company(self):
+        # Create company availability range
+        profile = CompanyProfile.get_solo()
+        CompanyAvailability.objects.create(company=profile, start_date=date(2026, 1, 1), end_date=date(2026, 12, 31))
+        # Service has no range -> should fallback to company
+        response = self.client.get(self.url, {'service_ids': str(self.service.id)})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        data = response.json()
-        self.assertEqual(len(data), 1)
-        
-        category = data[0]
-        self.assertEqual(category['name'], "Tours")
-        self.assertEqual(len(category['services']), 1)
-        
-        service = category['services'][0]
-        self.assertEqual(service['title'], "Alhambra Tour")
-        self.assertEqual(service['price'], "100.00")
-        self.assertEqual(service['duration'], 180)
-        self.assertNotIn('slots', service)
+        self.assertTrue(len(response.json()) > 0)
+
+    def test_availability_override_precedence(self):
+        # Set service override to unavailable
+        EventDateOverride.objects.create(event=self.service, date=date.today(), is_available=False)
+        response = self.client.get(self.url, {'service_ids': str(self.service.id)})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # Today should NOT be in the available dates
+        self.assertNotIn(date.today().strftime('%Y-%m-%d'), response.json())

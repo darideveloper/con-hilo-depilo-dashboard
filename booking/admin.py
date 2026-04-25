@@ -28,7 +28,6 @@ class AvailabilitySlotInline(BaseTabularInline):
     fields = ("weekday", "start_time", "end_time")
 
     def get_extra(self, request, obj=None, **kwargs):
-        # Determine the related name based on the parent model
         related_name = getattr(self, "related_name_attr", "slots")
         if obj and getattr(obj, related_name).exists():
             return 0
@@ -55,9 +54,9 @@ class CompanyAvailabilityInline(BaseTabularInline):
 class CompanyDateOverrideInline(BaseTabularInline):
     model = CompanyDateOverride
 
-class EventAvailabilitySlotInline(AvailabilitySlotInline):
+class EventAvailabilitySlotInline(BaseTabularInline):
     model = AvailabilitySlot
-    related_name_attr = "slots"
+    fields = ("weekday", "start_time", "end_time")
 
 class EventAvailabilityInline(BaseTabularInline):
     model = EventAvailability

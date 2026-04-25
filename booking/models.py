@@ -41,8 +41,9 @@ class BaseAvailabilitySlot(models.Model):
         return f"{self.get_weekday_display()}: {self.start_time} - {self.end_time}"
 
     def clean(self):
-        if self.start_time >= self.end_time:
-            raise ValidationError(_("Start time must be before end time."))
+        if self.start_time and self.end_time:
+            if self.start_time >= self.end_time:
+                raise ValidationError(_("Start time must be before end time."))
 
 class BaseDateOverride(models.Model):
     date = models.DateField(_("Date"))
@@ -63,6 +64,9 @@ class BaseDateOverride(models.Model):
         if self.is_available:
             if not self.start_time or not self.end_time:
                 raise ValidationError(_("Start and end times are required if available."))
+            if self.start_time >= self.end_time:
+                raise ValidationError(_("Start time must be before end time."))
+        elif self.start_time and self.end_time:
             if self.start_time >= self.end_time:
                 raise ValidationError(_("Start time must be before end time."))
 
